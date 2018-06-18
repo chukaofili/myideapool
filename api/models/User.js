@@ -6,24 +6,33 @@
  */
 
 module.exports = {
-
   attributes: {
-
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-
-
-    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-
-
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
+    email: {
+      type: 'string',
+      isEmail: true,
+      unique: true,
+      required: true
+    },
+    name: {
+      type: 'string',
+      required: true
+    },
+    password: {
+      type: 'string',
+      required: true
+    },
+    ideas: {
+      collection: 'idea',
+      via: 'user'
+    }
   },
+  beforeCreate: (valuesToSet, proceed) => {
+    sails.helpers.passwords.hashPassword(valuesToSet.password).exec((err, hashedPassword) => {
+      if (err) { return proceed(err); }
+      valuesToSet.password = hashedPassword;
+      return proceed();
+    });
+  }
 
 };
 
