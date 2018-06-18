@@ -33,6 +33,7 @@ var sails;
 var rc;
 try {
   sails = require('sails');
+  require('dotenv').config();
   rc = require('sails/accessible/rc');
 } catch (err) {
   console.error('Encountered an error when attempting to require(\'sails\'):');

@@ -1276,9 +1276,9 @@ dot-access@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/dot-access/-/dot-access-1.0.0.tgz#a362e5a25906b55bab48a42d101538726061fa68"
 
-dotenv@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-0.4.0.tgz#f6fb351363c2d92207245c737802c9ab5ae1495a"
+dotenv@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
 
 double-ended-queue@^2.1.0-0:
   version "2.1.0-0"
@@ -3327,12 +3327,6 @@ sails-generate@^1.15.19:
     read "1.0.7"
     reportback "^2.0.1"
     sails.io.js-dist "^1.0.0"
-
-sails-hook-dotenv@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/sails-hook-dotenv/-/sails-hook-dotenv-0.1.1.tgz#30b38a836f08a609b8e350fbb64ba5af4a978b42"
-  dependencies:
-    dotenv "^0.4.0"
 
 sails-hook-grunt@^3.0.2:
   version "3.1.0"

@@ -47,7 +47,7 @@ module.exports = {
     ***************************************************************************/
     default: {
       adapter: 'sails-mongo',
-      url: process.env.MONGODB_URI,
+      url: process.env.MONGODB_URI
     },
 
   },
@@ -67,6 +67,9 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     migrate: 'alter',
+    dataEncryptionKeys: {
+      default: process.env.DATA_ENCRYPTION_KEYS
+    },
 
     /***************************************************************************
     *                                                                          *
@@ -144,6 +147,7 @@ module.exports = {
   *                                                                          *
   ***************************************************************************/
   session: {
+    secret: process.env.SESSION_SECRET,
 
     /***************************************************************************
     *                                                                          *
