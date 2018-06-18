@@ -30,7 +30,6 @@ module.exports = {
   *                                                                         *
   **************************************************************************/
   datastores: {
-
     /***************************************************************************
     *                                                                          *
     * Configure your default production database.                              *
@@ -49,29 +48,6 @@ module.exports = {
     default: {
       adapter: 'sails-mongo',
       url: process.env.MONGODB_URI,
-      //--------------------------------------------------------------------------
-      //  /\   To avoid checking it in to version control, you might opt to set
-      //  ||   sensitive credentials like `url` using an environment variable.
-      //
-      //  For example:
-      //  ```
-      //  sails_datastores__default__url=mysql://admin:myc00lpAssw2D@db.example.com:3306/my_prod_db
-      //  ```
-      //--------------------------------------------------------------------------
-
-      /****************************************************************************
-      *                                                                           *
-      * More adapter-specific options                                             *
-      *                                                                           *
-      * > For example, for some hosted PostgreSQL providers (like Heroku), the    *
-      * > extra `ssl: true` option is mandatory and must be provided.             *
-      *                                                                           *
-      * More info:                                                                *
-      * https://sailsjs.com/config/datastores                                     *
-      *                                                                           *
-      ****************************************************************************/
-      ssl: true,
-
     },
 
   },
@@ -90,7 +66,7 @@ module.exports = {
     * https://sailsjs.com/docs/concepts/models-and-orm/model-settings#?migrate *
     *                                                                          *
     ***************************************************************************/
-    migrate: 'safe',
+    migrate: 'alter',
 
     /***************************************************************************
     *                                                                          *
@@ -250,9 +226,9 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    onlyAllowOrigins: [
-      'https://mip-chuka.herokuapp.com',
-    ],
+    // onlyAllowOrigins: [
+    //   '*',
+    // ],
 
 
     /***************************************************************************
@@ -291,7 +267,7 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   log: {
-    level: 'debug'
+    level: 'info'
   },
 
 
@@ -321,7 +297,7 @@ module.exports = {
     * (https://sailsjs.com/config/http)                                        *
     *                                                                          *
     ***************************************************************************/
-    trustProxy: true,
+    // trustProxy: true,
 
   },
 
@@ -336,7 +312,7 @@ module.exports = {
   * this, just try deploying without setting it and see if it works.)       *
   *                                                                         *
   ***************************************************************************/
-  // port: 80,
+  port: process.env.PORT,
 
 
 
@@ -370,7 +346,7 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'https://mip-chuka.herokuapp.com',
+    baseUrl: 'https://localhost:5000',
     internalEmailAddress: 'ofili@microsmart.tk',
 
     // mailgunDomain: 'mg.example.com',
