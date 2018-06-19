@@ -3,7 +3,7 @@ const thisModel = 'user';
 
 describe('User (model)', () => {
   const createRecord = async (thisNewRecord) => {
-    return await sails.models[thisModel].create(thisNewRecord).meta({fetch: true});
+    return await sails.models[thisModel].create(thisNewRecord).fetch();
   };
 
   const clearDb = async () => {
@@ -15,7 +15,7 @@ describe('User (model)', () => {
   describe('#create()', () => {
     it('should create record', async () => {
       const newRecord = provider.getRecord();
-      const createdRecord = await sails.models[thisModel].create(newRecord).meta({fetch: true});
+      const createdRecord = await sails.models[thisModel].create(newRecord).fetch();
       createdRecord.should.have.property('email', newRecord.email);
     });
   });
@@ -37,7 +37,7 @@ describe('User (model)', () => {
     it('should update record', async () => {
       const newRecord = await createRecord(provider.getRecord());
       const name = chance.name();
-      const updateRecord = await sails.models[thisModel].update({ email: newRecord.email }, { name }).meta({ fetch: true });
+      const updateRecord = await sails.models[thisModel].update({ email: newRecord.email }, { name }).fetch();
       updateRecord[0].should.have.property('name', name);
     });
     it('should test password hashing', async () => {

@@ -1,7 +1,7 @@
 const userProvider = require('../../fixtures/user');
 const thisModel = 'user';
 
-describe('UserController Tests', () => {
+describe('UserController', () => {
   const clearDb = async () => {
     return await sails.models[thisModel].destroy({});
   };

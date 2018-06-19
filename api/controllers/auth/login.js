@@ -1,12 +1,11 @@
+const passport = require('passport');
 module.exports = {
-
-
-  friendlyName: 'Login',
-
-
-  description: 'Login auth.',
-
-
+  friendlyName: 'Login user',
+  description: 'Log in using the provided email and password combination.',
+  extendedDescription: `This action attempts to look up the user record 
+    in the database with the specified email address.  Then, if such a 
+    user exists, it uses bcrypt to compare the hashed password from the
+    database with the provided password attempt.`,
   inputs: {
     email: {
       description: 'The email of the user to login.',
@@ -48,57 +47,19 @@ module.exports = {
       extendedDescription: 'If this request was sent from a graphical user interface, the request ' +
         'parameters should have been validated/coerced _before_ they were sent.'
     },
-    duplicateUser: {
-      statusCode: 409,
-      description: 'The provided email address is already in use or registered',
+    unauthorized: {
+      statusCode: 401,
+      description: 'Error loggin user in',
     }
   },
-
-
   fn: async function (inputs, exits) {
-    // passport.authenticate('local', { session: false }, function (err, user, info) {
-    //   const doLogin = async () => {
-    //     /* istanbul ignore if */
-    //     if (err) return { status: 401, message: 'Login unsuccessful' };
-    //     if (!user) return { status: 401, message: info.message };
-    //     let token;
-    //     if (_.has(req.headers, 'x-mobile')) {
-    //       if (_.has(req.headers, 'x-mobile-id')) {
-    //         const criteria = {
-    //           deviceUuid: req.headers['x-mobile-id'],
-    //           organization: user.organization,
-    //           isDeleted: false
-    //         };
-    //         const device = await Device.findOne(criteria);
-    //         if (!device) return { status: 401, message: 'Device not found. Please provision device' };
-    //         await Device.update(criteria, { user: user.id });
-    //         token = JwtService.issue({ id: user.id, organization: user.organization });
-    //       } else {
-    //         return { status: 401, message: 'Device UUID not set' };
-    //       }
-    //     } else {
-    //       const remember = _.has(req.body, 'remember') && req.body['remember'] === true;
-    //       exp = remember ? expRememberMe : exp;
-    //       token = JwtService.issue({ id: user.id, organization: user.organization }, exp);
-    //     }
-    //     const _token = await Token.create({
-    //       user: user.id,
-    //       organization: user.organization,
-    //       uuid: token.uuid,
-    //       token: token.token
-    //     });
-    //     if (!_token) return { status: 401, message: 'Login unsuccessful. Unable to create token' };
-    //     return { status: 200, message: 'Login successful', data: { user: user, token: token.token } }
-    //   };
+    passport.authenticate('local', async (err, user, info) => {
+      if (err) {return exits.unauthorized(err);}
+      if (!user) {return exits.unauthorized(info);}
 
-    //   return doLogin()
-    //     .then(result => ResponseService.json(result.status, res, result.message, result.data))
-    //     .catch(err => ResponseService.json(500, res, 'Unknown Error'));
-    // })(req, res);
-
-    return exits.success();
-
+      const jwt = await sails.helpers.jwt.issueToken({ id: user.id });
+      const refreshToken = '';
+      return exits.success({ message: 'OK', jwt, 'refresh_token': refreshToken});
+    })(this.req, this.res);
   }
-
-
 };

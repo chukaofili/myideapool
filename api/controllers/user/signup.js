@@ -53,9 +53,12 @@ module.exports = {
     }
   },
   fn: async (inputs, exits) => {
-    await User.create(inputs)
+    const user = await User.create(inputs)
       .intercept({ name: 'UsageError' }, (err) => { return { invalid: err }; })
-      .intercept({ code: 'E_UNIQUE' }, (err) => { return { duplicateUser: err }; });
-    return exits.success({ 'message': 'OK', 'jwt': '', 'refresh_token': '' });
+      .intercept({ code: 'E_UNIQUE' }, (err) => { return { duplicateUser: err }; })
+      .fetch();
+    const jwt = await sails.helpers.jwt.issueToken({ id: user.id });
+    const refreshToken = '';
+    return exits.success({ 'message': 'OK', jwt, 'refresh_token': refreshToken });
   }
 };

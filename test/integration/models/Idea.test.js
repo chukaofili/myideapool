@@ -4,7 +4,7 @@ const thisModel = 'idea';
 
 describe('Idea (model)', () => {
   const createRecord = async (model, thisNewRecord) => {
-    return await sails.models[model].create(thisNewRecord).meta({ fetch: true });
+    return await sails.models[model].create(thisNewRecord).fetch();
   };
 
   const clearDb = async () => {
@@ -17,7 +17,7 @@ describe('Idea (model)', () => {
     it('should create record', async () => {
       const user = await createRecord('user', userProvider.getRecord());
       const newRecord = provider.getRecord({user: user.id});
-      const createdRecord = await sails.models[thisModel].create(newRecord).meta({ fetch: true });
+      const createdRecord = await sails.models[thisModel].create(newRecord).fetch();
       createdRecord.should.have.property('content', newRecord.content);
     });
   });
@@ -42,7 +42,7 @@ describe('Idea (model)', () => {
       const user = await createRecord('user', userProvider.getRecord());
       const newRecord = await createRecord(thisModel, provider.getRecord({ user: user.id }));
       const content = chance.string();
-      const updateRecord = await sails.models[thisModel].update({ id: newRecord.id }, { content }).meta({ fetch: true });
+      const updateRecord = await sails.models[thisModel].update({ id: newRecord.id }, { content }).fetch();
       updateRecord[0].should.have.property('content', content);
     });
   });

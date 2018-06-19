@@ -3,7 +3,11 @@ module.exports = {
     default: {
       adapter: 'sails-disk',
     },
-
+  },
+  jwt: {
+    secret: 'SECRET',
+    audience: 'example.com',
+    issuer: 'https://example.com',
   },
   models: {
     migrate: 'drop',
