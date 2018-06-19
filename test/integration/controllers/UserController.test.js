@@ -16,7 +16,6 @@ describe('UserController', () => {
         .send(newUser)
         .expect(201);
       response.body.should.have.property('jwt');
-      response.body.should.have.property('refresh_token');
     });
     it('should return 400: validation error, missing params', async () => {
       const newUser = userProvider.getRecord({email: 'ok'});

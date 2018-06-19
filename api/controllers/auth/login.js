@@ -58,8 +58,7 @@ module.exports = {
       if (!user) {return exits.unauthorized(info);}
 
       const jwt = await sails.helpers.jwt.issueToken({ id: user.id });
-      const refreshToken = '';
-      return exits.success({ message: 'OK', jwt, 'refresh_token': refreshToken});
+      return exits.success({ message: 'OK', jwt});
     })(this.req, this.res);
   }
 };

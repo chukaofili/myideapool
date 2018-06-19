@@ -58,7 +58,6 @@ module.exports = {
       .intercept({ code: 'E_UNIQUE' }, (err) => { return { duplicateUser: err }; })
       .fetch();
     const jwt = await sails.helpers.jwt.issueToken({ id: user.id });
-    const refreshToken = '';
-    return exits.success({ 'message': 'OK', jwt, 'refresh_token': refreshToken });
+    return exits.success({ 'message': 'OK', jwt});
   }
 };

@@ -31,7 +31,6 @@ describe('AuthController', () => {
     it('should return 201: Generate token (Login OK)', async () => {
       const newUser = userProvider.getRecord();
       await createRecord({...newUser});
-
       const userLogin = _.omit(newUser, ['name']);
       const response = await request(sails.hooks.http.app)
         .post('/access-tokens')
