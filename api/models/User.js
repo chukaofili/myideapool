@@ -24,7 +24,10 @@ module.exports = {
     ideas: {
       collection: 'idea',
       via: 'user'
-    }
+    },
+  },
+  customToJSON: function() {
+    return _.omit(this, ['password']);
   },
   beforeCreate: (valuesToSet, proceed) => {
     sails.helpers.passwords.hashPassword(valuesToSet.password).exec((err, hashedPassword) => {

@@ -12,6 +12,7 @@
     "dotenv": "^6.0.0",
     "grunt": "1.0.1",
     "mocha": "^5.2.0",
+    "passport": "^0.4.0",
     "sails": "^1.0.2",
     "sails-hook-grunt": "^3.0.2",
     "sails-hook-organics": "^0.14.5",
@@ -32,7 +33,7 @@
     "start": "NODE_ENV=production node app.js",
     "dev": "NODE_ENV=development nodemon",
     "test": "npm run lint && npm run custom-tests",
-    "lint": "eslint . --fix --max-warnings=5 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "lint": "eslint . --fix --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "NODE_ENV=test node ./node_modules/mocha/bin/mocha test/lifecycle.test.js test/integration/**/*.test.js"
   },
   "main": "app.js",
