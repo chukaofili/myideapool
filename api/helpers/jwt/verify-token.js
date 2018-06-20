@@ -49,13 +49,14 @@ module.exports = {
     if (req.headers['x-access-token']) {
       const token = req.headers['x-access-token'];
       try {
-        const decoded = jwt.verify(token, tokenBuffer);
+        const decoded = jwt.verify(token, tokenBuffer, { audience, issuer});
         const foundUser = await User.findOne(decoded.id);
         if (!foundUser) {return exits.invalid('Invalid token');}
         req.user = foundUser;
         return exits.success(foundUser);
       } catch (err) {
-        return exits.invalid(err.message);
+        sails.log.warn(err.message);
+        return exits.invalid('Invalid token');
       }
     }
     return exits.invalid('Invalid token');
