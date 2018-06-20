@@ -17,12 +17,24 @@ setTimeout(function sunrise () {
 
 <div class="default-page">
   <div class="header">
-    <h1 id="main-title" class="container"><%= __('A brand new app.') %></h1>
-    <h3 class="container">You're looking at: <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
+    <h1 id="main-title" class="container"><%= __('My Idea Pool API.') %></h1>
+    <h3 class="container">Codemntor small project deployed at: <code>https://mip-chuka.herokuapp.com</code></h3>
   </div>
   <div class="main container clearfix">
     <ul class="getting-started">
       <li class="clearfix first">
+        <div class="step">
+          <div class="sprite one"></div>
+          <h3>Download Repository</h3>
+          <p>
+            To get started, clone the repositor from github
+            <a href="https://github.com/chukaofili/myideapool">here</a>.
+            <br/>
+            <small>Quick setup: git clone git@github.com:chukaofili/myideapool.git</small>
+          </p>
+        </div>
+      </li>
+      <!-- <li class="clearfix first">
         <div class="step">
           <div class="sprite one"></div>
           <h3>Get your bearings</h3>
@@ -32,24 +44,24 @@ setTimeout(function sunrise () {
             <small>(You'll learn about the framework and explore the files that were generated in this new app.)</small>
           </p>
         </div>
-      </li>
+      </li> -->
       <li class="clearfix">
         <div class="step">
           <div class="sprite two"></div>
-          <h3>Lift your app</h3>
+          <h3>Install Node, Yarn & App Dependencies</h3>
           <p>
-            Looks like you already ran <code>sails lift</code> to start up your app server. Nice work!
+            You'll need to have NodeJS (v8.9.4) installed. Grab a copy <a href="https://nodejs.org/en/download/">here</a>. After installing NodeJS, navigate to the repo folder on your system and run <code>yarn install</code>
             <br/>
-            <small>(Remember to re-lift after making backend code changes.)</small>
+            <small>(Remember to install yarn before running yarn install.)</small>
           </p>
         </div>
       </li>
       <li class="clearfix">
         <div class="step">
           <div class="sprite three"></div>
-          <h3>Dive in</h3>
+          <h3>Lift App</h3>
           <p>
-            Blueprints are just the beginning.  You'll probably also want to learn how to customize your app's <a href="https://sailsjs.com/documentation/concepts/routes">routes</a>, build custom <a target="_blank" href="https://sailsjs.com/documentation/concepts/actions-and-controllers">actions</a>, set up <a href="https://sailsjs.com/documentation/concepts/policies">security policies</a>, configure your <a href="https://sailsjs.com/documentation/reference/configuration/sails-config-datastores">data sources</a>, and deploy to <a href="http://sailsjs.com/documentation/concepts/deployment">production</a>.
+            To start the app (in development mode), you'll first need to create the <code>.env</code> file in the root folder of your repo and then update the values. (You can make a copy from the <code>.env.example</code> sample file also in the root folder of the repo). Once updated, run <code>yarn run dev</code> to start the app</a>.
             <br/>
             <small>(For more help getting started, check out the links on this page.)</small>
           </p>
