@@ -1,27 +1,18 @@
 module.exports = {
-
-
   friendlyName: 'Profile',
-
-
   description: 'Profile user.',
-
-
-  inputs: {
-
-  },
-
-
+  inputs: {},
   exits: {
-
+    success: {
+      description: 'User profile.'
+    },
+    invalid: {
+      description: 'Invalid user.',
+    }
   },
-
-
   fn: async function (inputs, exits) {
-
-    return exits.success();
-
+    const { user } = this.req;
+    user['avatar_url'] = sails.helpers.gravatar.getAvatarUrl(user.email);
+    return exits.success(user);
   }
-
-
 };

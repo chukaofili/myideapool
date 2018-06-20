@@ -28,6 +28,7 @@ module.exports.routes = {
     view: 'pages/homepage'
   },
   'POST /users': 'user/signup',
+  'GET /me': 'user/profile',
   'POST /access-tokens': 'auth/login',
 
   /***************************************************************************
