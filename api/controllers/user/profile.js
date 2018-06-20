@@ -11,8 +11,8 @@ module.exports = {
         'email': 'gerdar@ecuguboc.it',
         'name': 'Nannie Daniels',
         'avatar_url': 'https://www.gravatar.com/avatar/8f58f74f67f81eed0857c38110d67b16?s=80&d=identicon&rating=g',
-        'createdAt': 1529482138427,
-        'updatedAt': 1529482138427,
+        'created_at': 1529482138427,
+        'updated_at': 1529482138427,
       }
     },
     invalid: {

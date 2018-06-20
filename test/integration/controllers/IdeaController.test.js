@@ -140,7 +140,6 @@ describe('IdeaController', () => {
       const { user, token } = await getAccessToken();
       const newIdeas = ideaProvider.getRecord({user: user.id}, 20);
       await createDbRecord('idea', newIdeas, true);
-
       const response = await request(sails.hooks.http.app)
           .get('/ideas')
           .set('X-Access-Token', token)

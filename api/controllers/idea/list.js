@@ -15,8 +15,8 @@ module.exports = {
         'confidence': 8,
         'average_score': 8.0,
         'user': 23,
-        'createdAt': 1529485206287,
-        'updatedAt': 1529485206287
+        'created_at': 1529485206287,
+        'updated_at': 1529485206287
       }]
     },
   },
@@ -26,7 +26,7 @@ module.exports = {
     const conditions = { user: this.req.user.id };
 
     try {
-      const ideas = await Idea.find(conditions).paginate(currentPage-1, perSize).sort('createdAt ASC');
+      const ideas = await Idea.find(conditions).paginate(currentPage-1, perSize).sort('created_at ASC');
       return exits.success(ideas);
     } catch (err) {
       sails.log.error(err);

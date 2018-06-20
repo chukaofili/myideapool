@@ -44,8 +44,8 @@ module.exports = {
         'email': 'adiarudi@li.bm',
         'name': 'Carl Powell',
         'avatar_url': 'https://www.gravatar.com/avatar/1ec1436e38a95a78fc17dec435ed2450?s=80&d=identicon&rating=g',
-        'createdAt': 1529482204194,
-        'updatedAt': 1529482204194,
+        'created_at': 1529482204194,
+        'updated_at': 1529482204194,
       }
     },
     invalid: {

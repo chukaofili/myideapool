@@ -51,8 +51,8 @@ module.exports = {
         'confidence': 8,
         'average_score': 8.0,
         'user': 23,
-        'createdAt': 1529485206287,
-        'updatedAt': 1529485209287
+        'created_at': 1529485206287,
+        'updated_at': 1529485209287
       }
     },
     invalid: {
