@@ -30,6 +30,10 @@ module.exports.routes = {
   'POST /users': 'user/signup',
   'GET /me': 'user/profile',
   'POST /access-tokens': 'auth/login',
+  'POST /ideas': 'idea/create',
+  'PUT /ideas/:id': 'idea/update',
+  'GET /ideas': 'idea/list',
+  'DELETE /ideas/:id': 'idea/delete',
 
   /***************************************************************************
   *                                                                          *

@@ -14,32 +14,42 @@ module.exports = {
       required: true
     },
     secret: {
+      type: 'string',
       friendlyName: 'JWT Token Signing Secret',
       description: 'Token Signing Secret.',
       example: 'SECRET',
-      type: 'string',
       defaultsTo: secret
     },
     audience: {
+      type: 'string',
       friendlyName: 'JWT Audience',
       description: 'Token audience',
       example: 'example.com',
-      type: 'string',
       defaultsTo: audience
     },
     issuer: {
+      type: 'string',
       friendlyName: 'JWT Issuer',
       description: 'Token issuer',
       example: 'https://example.com',
-      type: 'string',
       defaultsTo: issuer
     },
   },
   exits: {
     success: {
-      description: 'Decoded valid token response'
+      friendlyName: 'Decoded payload',
+      description: 'Decoded valid token response',
+      outputExample: {
+        'id': 1,
+        'email': 'adiarudi@li.bm',
+        'name': 'Carl Powell',
+        'avatar_url': 'https://www.gravatar.com/avatar/1ec1436e38a95a78fc17dec435ed2450?s=80&d=identicon&rating=g',
+        'createdAt': 1529482204194,
+        'updatedAt': 1529482204194,
+      }
     },
     invalid: {
+      friendlyName: 'Invalid token',
       description: 'Invalid token or no authentication present.',
     }
   },

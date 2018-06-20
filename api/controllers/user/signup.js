@@ -3,28 +3,33 @@ module.exports = {
   description: 'Signup user with email, phone & password.',
   inputs: {
     email: {
-      description: 'The email of the user to sign up.',
       type: 'string',
+      friendlyName: 'User email.',
+      description: 'The email of the user to sign up.',
       example: 'john.doe@example.com',
       isEmail: true,
       required: true
     },
     name: {
-      description: 'The name of the user to sign up.',
       type: 'string',
+      friendlyName: 'User name.',
+      description: 'The fullname of the user to sign up.',
       example: 'John Doe',
       required: true
     },
     password: {
+      type: 'string',
+      friendlyName: 'User password.',
       description: 'The password of the user to sign up.',
       example: 'abcD123EJD',
-      type: 'string',
       required: true
     }
   },
   exits: {
     success: {
       statusCode: 201,
+      friendlyName: 'JWT token',
+      description: 'JWT token return after user signup',
       outputExample: {
         'message': 'OK',
         'jwt': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJleHAiOjE1MjQyMTEzODUsImlkIjoiaXI5dGNhcHEx' +
@@ -37,8 +42,6 @@ module.exports = {
           'XUZBNku-RWI9s9H5Eqm9YIg33P6mXtN39kz5Sim6Jg_x5tZ22PTm-Mu6bdtIZBogQflZiBJt1eji_hH8nJDFuh3Z' +
           'xMCon4yeTL7m8ZWuf8-_Z5zfSltk_ePIqWt3c4GnMU9kd5sgjrJCuLwof00HTXFFjYLBmPpWtNfvQ6_gOjws-MKQ' +
           'kGH35Vail5-nvujfI0itzKWc36h3qUPOQG8p0jsw',
-        'refresh_token': '6c0e3c51a51b8df21da34d63eadfcf6d9b54fe2a7acd88bc135ead0eb6e1969a4e7faf7' +
-          '5c14b8b6e787b6cc4722afd9465eb',
       },
     },
     invalid: {

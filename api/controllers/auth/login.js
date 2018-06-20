@@ -8,6 +8,7 @@ module.exports = {
     database with the provided password attempt.`,
   inputs: {
     email: {
+      friendlyName: 'User email.',
       description: 'The email of the user to login.',
       type: 'string',
       example: 'john.doe@example.com',
@@ -15,6 +16,7 @@ module.exports = {
       required: true
     },
     password: {
+      friendlyName: 'User password.',
       description: 'The password of the user to login.',
       example: 'abcD123EJD',
       type: 'string',
@@ -24,7 +26,8 @@ module.exports = {
   exits: {
     success: {
       statusCode: 201,
-      description: 'The users jwt access token & refresh token.',
+      friendlyName: 'JWT access-token',
+      description: 'The users jwt access token.',
       outputExample: {
         'message': 'OK',
         'jwt': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJleHAiOjE1MjQyMTEzODUsImlkIjoiaXI5dGNhcHEx' +
@@ -37,8 +40,6 @@ module.exports = {
           'XUZBNku-RWI9s9H5Eqm9YIg33P6mXtN39kz5Sim6Jg_x5tZ22PTm-Mu6bdtIZBogQflZiBJt1eji_hH8nJDFuh3Z' +
           'xMCon4yeTL7m8ZWuf8-_Z5zfSltk_ePIqWt3c4GnMU9kd5sgjrJCuLwof00HTXFFjYLBmPpWtNfvQ6_gOjws-MKQ' +
           'kGH35Vail5-nvujfI0itzKWc36h3qUPOQG8p0jsw',
-        'refresh_token': '6c0e3c51a51b8df21da34d63eadfcf6d9b54fe2a7acd88bc135ead0eb6e1969a4e7faf7' +
-          '5c14b8b6e787b6cc4722afd9465eb',
       },
     },
     invalid: {
