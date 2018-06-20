@@ -1,4 +1,3 @@
-const _ = require('lodash');
 module.exports = {
   friendlyName: 'Create Idea.',
   description: 'Create an idea.',
@@ -51,7 +50,7 @@ module.exports = {
         'ease': 8,
         'confidence': 8,
         'average_score': 8.0,
-        'user': 23, 
+        'user': 23,
         'createdAt': 1529485206287,
         'updatedAt': 1529485206287
       }
@@ -63,7 +62,7 @@ module.exports = {
   },
   fn: async function (inputs, exits) {
     const { impact, ease, confidence } = inputs;
-    inputs.average_score = _.mean([impact, ease, confidence]).toFixed(2);
+    inputs.average_score = _.mean([impact, ease, confidence]).toFixed(2); //eslint-disable-line
     inputs.user = this.req.user.id;
     const idea = await Idea.create(inputs)
       .intercept({ name: 'UsageError' }, (err) => { return { invalid: err }; })

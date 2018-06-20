@@ -1,4 +1,3 @@
-const _ = require('lodash');
 module.exports = {
   friendlyName: 'Delete Idea.',
   description: 'Delete an idea.',
@@ -21,13 +20,13 @@ module.exports = {
   fn: async function (inputs, exits) {
     const { id } = this.req.params;
     const idea = await Idea.destroy({ id, user: this.req.user.id })
-      .intercept({ code: 'E_INVALID_CRITERIA' }, () => { return { notfound: { message: 'Record not found' } } })
+      .intercept({ code: 'E_INVALID_CRITERIA' }, () => { return { notfound: { message: 'Record not found' } }; })
       .intercept({ name: 'UsageError' }, (err) => {
         sails.log.error(err);
-        return { internalError: { message: 'Internal server error occurred' } }
+        return { internalError: { message: 'Internal server error occurred' } };
       })
       .fetch();
-    
+
     if (!idea.length) {
       return exits.notfound({ message: 'Record not found' });
     }

@@ -28,7 +28,7 @@ module.exports = {
       max: 10,
       required: true,
     },
-    average_score:{
+    average_score: { //eslint-disable-line
       type: 'number',
       min: 1,
       max: 10,

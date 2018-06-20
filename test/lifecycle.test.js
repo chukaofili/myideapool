@@ -9,7 +9,6 @@ chai.use(require('chai-things'));
 chai.use(require('chai-as-promised'));
 global.Promise = require('bluebird');
 global.request = require('supertest');
-global._ = require('lodash');
 
 before((done) => {
   sails.lift({}, (err) => {

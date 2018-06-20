@@ -1,4 +1,3 @@
-const _ = require('lodash');
 module.exports = {
   friendlyName: 'Update Idea.',
   description: 'Update an idea.',
@@ -67,13 +66,13 @@ module.exports = {
   },
   fn: async function (inputs, exits) {
     const { impact, ease, confidence } = inputs;
-    inputs.average_score = _.mean([impact, ease, confidence]).toFixed(2);
+    inputs.average_score = _.mean([impact, ease, confidence]).toFixed(2); //eslint-disable-line
 
     const { id } = this.req.params;
     const idea = await Idea.update({ id, user: this.req.user.id})
       .set(inputs)
-      .intercept({ code: 'E_INVALID_CRITERIA' }, () => { return { notfound: { message: 'Record not found' } } })
-      .intercept({ name: 'UsageError' }, (err) => { return { invalid: err } })
+      .intercept({ code: 'E_INVALID_CRITERIA' }, () => { return { notfound: { message: 'Record not found' } }; })
+      .intercept({ name: 'UsageError' }, (err) => { return { invalid: err }; })
       .fetch();
 
     if (!idea.length) {
