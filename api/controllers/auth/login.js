@@ -58,8 +58,16 @@ module.exports = {
       if (err) {return exits.unauthorized(err);}
       if (!user) {return exits.unauthorized(info);}
 
-      const jwt = await sails.helpers.jwt.issueToken({ id: user.id });
-      return exits.success({ message: 'OK', jwt});
+      const {uuid, token} = await sails.helpers.jwt.issueToken({ id: user.id });
+      await Token.create({
+        user: user.id,
+        uuid,
+        token
+      }).intercept({ name: 'UsageError' }, (err) => {
+        sails.log.error(err);
+        return { error: err };
+      });
+      return exits.success({ 'message': 'OK', 'jwt': token, 'refresh_token': uuid});
     })(this.req, this.res);
   }
 };

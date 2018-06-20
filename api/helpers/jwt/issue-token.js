@@ -75,6 +75,7 @@ module.exports = {
           'XUZBNku-RWI9s9H5Eqm9YIg33P6mXtN39kz5Sim6Jg_x5tZ22PTm-Mu6bdtIZBogQflZiBJt1eji_hH8nJDFuh3Z' +
           'xMCon4yeTL7m8ZWuf8-_Z5zfSltk_ePIqWt3c4GnMU9kd5sgjrJCuLwof00HTXFFjYLBmPpWtNfvQ6_gOjws-MKQ' +
           'kGH35Vail5-nvujfI0itzKWc36h3qUPOQG8p0jsw',
+        'uuid': '51235dec-995d-4df0-a12b-8d62386ca3c3'
       },
     },
   },
@@ -82,7 +83,7 @@ module.exports = {
     const { payload, secret, ...opts } = inputs;
     const tokenBuffer = new Buffer(secret, 'base64');
     const token = jwt.sign(payload, tokenBuffer, opts);
-    return exits.success(token);
+    return exits.success({ token, uuid: opts.jwtid});
   }
 };
 

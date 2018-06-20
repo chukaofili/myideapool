@@ -48,7 +48,7 @@ describe('UserController', () => {
 
   describe('#profile [GET /me]', () => {
     it('should return 200: user profile', async () => {
-      const {token} = await getAccessToken();
+      const {token } = await getAccessToken();
       const response = await request(sails.hooks.http.app)
         .get('/me')
         .set('X-Access-Token', token)

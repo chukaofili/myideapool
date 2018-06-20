@@ -60,12 +60,19 @@ module.exports = {
       const token = req.headers['x-access-token'];
       try {
         const decoded = jwt.verify(token, tokenBuffer, { audience, issuer});
-        const foundUser = await User.findOne(decoded.id);
-        if (!foundUser) {return exits.invalid('Invalid token');}
-        req.user = foundUser;
-        return exits.success(foundUser);
+        const findToken = await Token.findOne({user: decoded.id, uuid: decoded.jti});
+        if (!findToken) { return exits.invalid('Invalid token'); }
+        const findUser = await User.findOne(decoded.id);
+        if (!findUser) {return exits.invalid('Invalid token');}
+        req.user = findUser;
+        req.tokenUuid = decoded.jti;
+        return exits.success(findUser);
       } catch (err) {
         sails.log.warn(err.message);
+        if (err.name === 'TokenExpiredError') {
+          const decoded = jwt.decode(token);
+          await Token.destroy({ user: decoded.id, uuid: decoded.jti });
+        }
         return exits.invalid('Invalid token');
       }
     }
