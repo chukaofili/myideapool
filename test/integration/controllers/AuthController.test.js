@@ -22,7 +22,7 @@ describe('AuthController', () => {
 
   afterEach(clearDb);
 
-  describe('#login() [POST /access-tokens]', () => {
+  describe('#login [POST /access-tokens]', () => {
     it('should return 400: Bad request (Missing credentials)', async () => {
       const response = await request(sails.hooks.http.app)
         .post('/access-tokens')
@@ -40,7 +40,7 @@ describe('AuthController', () => {
     });
     it('should return 201: Generate token (Login OK)', async () => {
       const newUser = userProvider.getRecord();
-      await createRecord({...newUser});
+      await createRecord({ ...newUser });
       const userLogin = _.omit(newUser, ['name']);
       const response = await request(sails.hooks.http.app)
         .post('/access-tokens')
@@ -48,6 +48,8 @@ describe('AuthController', () => {
         .expect(201);
       response.body.should.have.property('jwt');
     });
+  });
+  describe('#logout [DELETE /access-tokens]', () => {
     it('should return 204: Destory token (Logout OK)', async () => {
       const { token } = await getAccessToken();
       await request(sails.hooks.http.app)
